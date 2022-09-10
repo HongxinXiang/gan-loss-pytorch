@@ -51,7 +51,8 @@ BCE(output,0)=-\frac{1}{n}\sum_ilog(1-o[i])=KL(P=0||Q=output)
 $$
 
 注意，当 target=0 时，在 KL 散度里面应该修改定义为：
-$KL(P||Q)=\sum_{x}(1-p(x))log(1-p(x))-\sum_{x}(1-p(x))log(1-q(x))$
+
+$$KL(P||Q)=\sum_{x}(1-p(x))log(1-p(x))-\sum_{x}(1-p(x))log(1-q(x))$$
 
 伪代码如下：
 
