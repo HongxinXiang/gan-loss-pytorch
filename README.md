@@ -1,13 +1,17 @@
 # GAN loss with pytorch
 
 f-divergence 的定义：
+
 $$
 D_f(P||Q)=\int_\Omega f(\frac{dP}{dQ})dQ
 $$
+
 其中，$f$ 为下凸函数，满足$f(1)=0$；$P=p(x), Q=q(x)$ ，进一步可将上式转化为：
+
 $$
 \int_\Omega f(\frac{p(x)dx}{q(x)dx})q(x)dx=\int_\Omega f(\frac{p(x)}{q(x)})q(x)dx
 $$
+
 通过合理的选择不同的 $f$, 可以转化为不同的 divergence，常用的例子有：KL- divergence，JS divergence 等。
 
 ## KL divergence
@@ -15,10 +19,12 @@ $$
 KL 散度又称为相对熵，信息散度，信息增益。KL 散度是是两个概率分布 P 和 Q 差别的非对称性的度量。 KL 散度是用来度量使用基于 Q 的编码来编码来自P的样本平均所需的额外的位元数。 典型情况下，**P 表示数据的真实分布，Q 表示数据的理论分布、模型分布、或 P 的近似分布**。
 
 另 $f=xlogx$，f-divergence 可以被转化为 KL-divergence：
+
 $$
 KL(P||Q)=D_f(P||Q)=\int_\Omega \frac{p(x)}{q(x)}log{\frac{p(x)}{q(x)}}q(x)dx=\int_\Omega p(x)log{\frac{p(x)}{q(x)}}dx
 \\=\sum_{x}p(x)logp(x)-\sum_{x}p(x)logq(x)
 $$
+
 因为对数函数是凸函数，所以 KL divergence 散度的值为非负数。
 
 有时会将 KL 散度称为 KL 距离，**但它并不满足距离的性质**（第1点和第2点）：
@@ -30,10 +36,13 @@ $$
 3. 非负性，即$KL(P||Q)>0$。
 
 **在GAN的训练中，使用 BCE 损失来充当**：
+
 $$
 BCE(output, target)=-\frac{1}{n}\sum_i(t[i]*log(o[i])+(1-t[i])*log(1-o[i]))
 $$
+
 可以简单推导出：
+
 $$
 BCE(output, 1)=-\frac{1}{n}\sum_ilog(o[i])=KL(P=1||Q=output)
 $$
