@@ -14,7 +14,7 @@ $$
 
 通过合理的选择不同的 $f$, 可以转化为不同的 divergence，常用的例子有：KL- divergence，JS divergence 等。
 
-## KL divergence
+## [KL divergence](./KLD.py)
 
 KL 散度又称为相对熵，信息散度，信息增益。KL 散度是是两个概率分布 P 和 Q 差别的非对称性的度量。 KL 散度是用来度量使用基于 Q 的编码来编码来自P的样本平均所需的额外的位元数。 典型情况下，**P 表示数据的真实分布，Q 表示数据的理论分布、模型分布、或 P 的近似分布**。
 
@@ -82,7 +82,7 @@ optimizer_D.step()
 
 
 
-## JS divergence
+## [JS divergence]{JSD.py}
 
 **JS散度度量了两个概率分布的相似度，基于KL散度的变体，解决了KL散度非对称的问题。一般地，JS散度是对称的，其取值是0到1之间。**
 
