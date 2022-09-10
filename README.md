@@ -21,8 +21,7 @@ KL 散度又称为相对熵，信息散度，信息增益。KL 散度是是两�
 另 $f=xlogx$，f-divergence 可以被转化为 KL-divergence：
 
 $$
-KL(P||Q)=D_f(P||Q)=\int_\Omega \frac{p(x)}{q(x)}log{\frac{p(x)}{q(x)}}q(x)dx=\int_\Omega p(x)log{\frac{p(x)}{q(x)}}dx
-\\=\sum_{x}p(x)logp(x)-\sum_{x}p(x)logq(x)
+KL(P||Q)=D_f(P||Q)=\int_\Omega \frac{p(x)}{q(x)}log{\frac{p(x)}{q(x)}}q(x)dx=\int_\Omega p(x)log{\frac{p(x)}{q(x)}}dx=\sum_{x}p(x)logp(x)-\sum_{x}p(x)logq(x)
 $$
 
 因为对数函数是凸函数，所以 KL divergence 散度的值为非负数。
@@ -86,16 +85,17 @@ optimizer_D.step()
 **JS散度度量了两个概率分布的相似度，基于KL散度的变体，解决了KL散度非对称的问题。一般地，JS散度是对称的，其取值是0到1之间。**
 
 定义如下：
+
 $$
 JS(P||Q)=\frac{1}{2}KL(P||\frac{P+Q}{2})+\frac{1}{2}KL(Q||\frac{P+Q}{2})
 $$
+
 **JS散度主要有两个性质：**
 
 - 对称性，即 $JS(P||Q)=JS(Q||P)$
 - 值域范围：JS 散度的值域范围为 [0, 1]，相同为0，相反为1。
 
 **KL散度和JS散度度量的时候有一个问题：**
-
 如果两个分配P,Q离得很远，完全没有重叠的时候，那么KL散度值是没有意义的，而JS散度值是一个常数。这在学习算法中是比较致命的，这就意味这这一点的梯度为0。梯度消失了。
 
 
@@ -103,13 +103,17 @@ $$
 ## 为什么在原始 GAN 的训练中使用的是类似交叉熵的损失？
 
 这里，我们可以先看一下交叉熵的定义：
+
 $$
 H(p,q)=\sum_{i=1}^{N}p(x_i)log\frac{1}{q(x_i)}
 $$
+
 交叉熵和相对熵（KL散度）的关系如下：
+
 $$
 KL(p,q)=H(p,q)-H(p)
 $$
+
 因为训练数据的分布是已知的，故H(p)=0，$KL(p,q)$就直接等于$H(p,q)$。所以交叉熵与KL散度的意义十分类似。
 
 
