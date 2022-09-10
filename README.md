@@ -82,7 +82,7 @@ optimizer_D.step()
 
 
 
-## [JS divergence]{JSD.py}
+## [JS divergence]{./JSD.py}
 
 **JS散度度量了两个概率分布的相似度，基于KL散度的变体，解决了KL散度非对称的问题。一般地，JS散度是对称的，其取值是0到1之间。**
 
